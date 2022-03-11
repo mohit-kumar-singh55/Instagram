@@ -15,3 +15,9 @@ html {
     padding: 0;
     box-sizing: border-box;
 }
+
+@layer components{
+    .navbtn{
+        @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-300
+    }
+}
