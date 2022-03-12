@@ -5,7 +5,7 @@ import { HomeIcon } from "@heroicons/react/solid";
 
 const Header = () => {
     return (
-        <div className='shadow-sm backdrop-blur-sm sticky top-0 z-50'>
+        <nav className='shadow-md backdrop-blur-sm sticky top-0 z-50'>
             <div className='flex justify-between max-w-6xl mx-5 lg:mx-auto'>
                 {/* Left */}
                 <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
@@ -41,7 +41,7 @@ const Header = () => {
                     <img src="https://links.papareact.com/3ke" alt="user_pic" className='h-10 rounded-full cursor-pointer' />
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }
 
