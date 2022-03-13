@@ -4,7 +4,7 @@ import Feed from "../components/Feed";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className="bg-gray-50 h-screen overflow-y-scroll">
       <Head>
         <title>Instagram</title>
         <link rel="icon" href="/favicon.ico" />
