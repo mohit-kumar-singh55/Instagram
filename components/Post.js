@@ -16,15 +16,29 @@ const Post = ({ post }) => {
             <img src={post.img} alt="post_Img" className='w-full object-cover' />
 
             {/* Buttons */}
-            <HeartIcon className='btn' />
-            <ChatIcon className='btn' />
-            <PaperAirplaneIcon className='btn' />
+            <div className='flex justify-between items-center px-4 pt-4'>
+                <div className='flex space-x-4'>
+                    <HeartIcon className='btn' />
+                    <ChatIcon className='btn' />
+                    <PaperAirplaneIcon className='btn rotate-45' />
+                </div>
+                <BookmarkIcon className='btn' />
+            </div>
 
             {/* Caption */}
+            <p className='p-5'>
+                <span className='font-bold mr-1'>{post.username}</span>
+                {post.caption}
+            </p>
 
             {/* Comments */}
 
             {/* Input */}
+            <form className='flex items-center p-4'>
+                <EmojiHappyIcon className='h-7' />
+                <input type="text" placeholder='Add a comment...' className='border-none flex-1 focus:ring-0 outline-none' />
+                <button className='font-semibold text-blue-400'>Post</button>
+            </form>
         </div>
     )
 }
