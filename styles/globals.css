@@ -16,8 +16,12 @@ html {
     box-sizing: border-box;
 }
 
-@layer components{
-    .navbtn{
+@layer components {
+    .navbtn {
         @apply hidden h-6 md:inline-flex cursor-pointer hover:scale-125 transition-all duration-300
+    }
+
+    .btn {
+        @apply h-7 hover:scale-110 cursor-pointer transition-all duration-300
     }
 }
