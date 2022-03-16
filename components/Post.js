@@ -1,8 +1,11 @@
 import React from 'react';
 import { BookmarkIcon, ChatIcon, DotsHorizontalIcon, EmojiHappyIcon, HeartIcon, PaperAirplaneIcon } from "@heroicons/react/outline";
 import { HeartIconFilled } from "@heroicons/react/solid";
+import { useSession } from 'next-auth/react';
 
 const Post = ({ post }) => {
+    const { data: session } = useSession();
+
     return (
         <div className='bg-white my-7 rounded-sm border'>
             {/* Header */}
@@ -16,14 +19,16 @@ const Post = ({ post }) => {
             <img src={post.img} alt="post_Img" className='w-full object-cover' />
 
             {/* Buttons */}
-            <div className='flex justify-between items-center px-4 pt-4'>
-                <div className='flex space-x-4'>
-                    <HeartIcon className='btn' />
-                    <ChatIcon className='btn' />
-                    <PaperAirplaneIcon className='btn rotate-45' />
+            {session && (
+                <div className='flex justify-between items-center px-4 pt-4'>
+                    <div className='flex space-x-4'>
+                        <HeartIcon className='btn' />
+                        <ChatIcon className='btn' />
+                        <PaperAirplaneIcon className='btn rotate-45' />
+                    </div>
+                    <BookmarkIcon className='btn' />
                 </div>
-                <BookmarkIcon className='btn' />
-            </div>
+            )}
 
             {/* Caption */}
             <p className='p-5'>
@@ -34,11 +39,13 @@ const Post = ({ post }) => {
             {/* Comments */}
 
             {/* Input */}
-            <form className='flex items-center p-4'>
-                <EmojiHappyIcon className='h-7' />
-                <input type="text" placeholder='Add a comment...' className='border-none flex-1 focus:ring-0 outline-none' />
-                <button className='font-semibold text-blue-400'>Post</button>
-            </form>
+            {session && (
+                <form className='flex items-center p-4'>
+                    <EmojiHappyIcon className='h-7' />
+                    <input type="text" placeholder='Add a comment...' className='border-none flex-1 focus:ring-0 outline-none' />
+                    <button className='font-semibold text-blue-400'>Post</button>
+                </form>
+            )}
         </div>
     )
 }
