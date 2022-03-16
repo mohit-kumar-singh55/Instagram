@@ -1,7 +1,6 @@
 import React from 'react';
 import { getProviders, signIn } from "next-auth/react";
 import Header from "../../components/Header";
-import Image from 'next/image';
 
 const SignIn = ({ providers }) => {
     return (
