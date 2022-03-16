@@ -10,7 +10,15 @@ export default NextAuth({
         }),
         // ...add more providers here
     ],
-    pages:{
+    pages: {
         signIn: '/auth/signin'
+    },
+    callbacks: {
+        async session({ token, user, session }) {
+            session.user.username = session.user.name.split(" ").join("").toLocaleLowerCase();
+            session.user.uid = token.sub;
+
+            return session;
+        }
     }
 })
