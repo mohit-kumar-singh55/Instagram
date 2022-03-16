@@ -37,7 +37,7 @@ const Header = () => {
 
                 {/* Right */}
                 <div className="flex items-center justify-end space-x-4">
-                    <HomeIcon className='navbtn' />
+                    <HomeIcon onClick={handleClick} className='navbtn' />
                     <MenuIcon className='h-6 md:hidden' />
 
                     {session ? (
