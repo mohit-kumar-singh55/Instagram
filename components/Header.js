@@ -6,6 +6,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
     const { data: session } = useSession();
+    console.log(session);
 
     return (
         <nav className='shadow-md backdrop-blur-sm sticky top-0 z-50'>
@@ -43,10 +44,10 @@ const Header = () => {
                             <UserGroupIcon className='navbtn' />
                             <HeartIcon className='navbtn' />
 
-                            <img src={session?.user?.image} onClick={signOut()} alt="user_pic" className='h-10 rounded-full cursor-pointer' />
+                            <img src={session?.user?.image} onClick={signOut} alt="user_pic" className='h-10 rounded-full cursor-pointer' />
                         </>
                     ) : (
-                        <button onClick={signIn()}>Sign In</button>
+                        <button onClick={signIn}>Sign In</button>
                     )}
                 </div>
             </div>
