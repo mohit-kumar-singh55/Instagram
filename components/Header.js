@@ -33,7 +33,7 @@ const Header = () => {
                         <div className='absolute inset-y-0 pl-3 flex items-center pointer-events-none'>
                             <SearchIcon className='w-5 h-5 text-gray-500' />
                         </div>
-                        <input className='w-full bg-gray-50 pl-10 block sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-full' type="search" placeholder='Search' />
+                        <input className='w-full bg-transparent pl-10 block sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-full' type="search" placeholder='Search' />
                     </div>
                 </div>
 
