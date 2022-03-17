@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from "../components/Header";
 import Feed from "../components/Feed";
+import Modal from "../components/Modal";
 
 const Home = () => {
   return (
@@ -14,7 +15,7 @@ const Home = () => {
 
       <Feed />
 
-      {/* <Footer /> */}
+      <Modal />
 
     </div>
   )
