@@ -41,6 +41,22 @@ const Modal = () => {
                     >
                         <div className='inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all  sm:my-8 sm:align-middle sm:w-full sm:p-6 sm:max-w-sm'>
                             <div>
+                                <div>
+                                    <div className='mt-3 text-center sm:mt-5'>
+                                        <Dialog.Title
+                                            as="h3"
+                                            className='text-lg leading-6 font-medium text-gray-900'
+                                        >
+                                            Upload a photo
+                                        </Dialog.Title>
+
+                                        <div>
+                                            <input type="file"
+
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="mt-5 sm:mt-6">
                                     <button type='button' className='inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2  focus:ring-offset-2  focus:ring-red-500 sm:text-sm disabled:bg-gray-300 disabled:cursor-not-allowed hover:disabled:bg-gray-300'>
                                         Upload Post
