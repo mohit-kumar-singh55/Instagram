@@ -1,32 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Post from "./Post";
-import faker from '@faker-js/faker';
-
-const posts = [
-    {
-        id: Date.now(),
-        username: faker.helpers.contextualCard().username,
-        userImg: faker.helpers.contextualCard().avatar,
-        img: faker.helpers.contextualCard().avatar,
-        caption: "This is a post you know!"
-    },
-    {
-        id: Date.now(),
-        username: faker.helpers.contextualCard().username,
-        userImg: faker.helpers.contextualCard().avatar,
-        img: faker.helpers.contextualCard().avatar,
-        caption: "This is a post you know!"
-    },
-    {
-        id: Date.now(),
-        username: faker.helpers.contextualCard().username,
-        userImg: faker.helpers.contextualCard().avatar,
-        img: faker.helpers.contextualCard().avatar,
-        caption: "This is a post you know!"
-    },
-]
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Posts = () => {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        return onSnapshot(query(collection(db, 'posts'), orderBy('timestamp', 'desc')), (snapshot) => {
+            setPosts(snapshot.docs);
+        });
+    }, [db])
+
     return (
         <div>
             {posts.map((post) => (
