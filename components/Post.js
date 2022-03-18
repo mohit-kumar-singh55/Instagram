@@ -32,7 +32,7 @@ const Post = ({ post }) => {
 
             {/* Caption */}
             <p className='p-5'>
-                <span className='font-bold mr-1'>{post.username}</span>
+                <span className='font-bold mr-1'>{post.data().username}</span>
                 {post.data().caption}
             </p>
 
