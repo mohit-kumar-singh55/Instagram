@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BookmarkIcon, ChatIcon, DotsHorizontalIcon, EmojiHappyIcon, HeartIcon, PaperAirplaneIcon } from "@heroicons/react/outline";
 import { HeartIconFilled } from "@heroicons/react/solid";
 import { useSession } from 'next-auth/react';
+import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Post = ({ post }) => {
     const { data: session } = useSession();
+    const [comment, setComment] = useState("");
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => (
+        onSnapshot(
+            query(collection(db, 'posts', post.id, 'comments'), orderBy('timestamp', 'desc')),
+            (snapshot) => setComments(snapshot.docs)
+        )), [db])
+
+
+    const sendComment = async (e) => {
+        e.preventDefault()
+
+        const commentToSent = comment;
+        setComment("");
+
+        await addDoc(collection(db, 'posts', post.id, 'comments'), {
+            comment: commentToSent,
+            username: session?.user?.username,
+            userImage: session?.user?.image,
+            timestamp: serverTimestamp()
+        })
+    }
 
     return (
         <div className='bg-white my-7 rounded-sm border'>
@@ -40,10 +65,10 @@ const Post = ({ post }) => {
 
             {/* Input */}
             {session && (
-                <form className='flex items-center p-4'>
+                <form onSubmit={sendComment} className='flex items-center p-4'>
                     <EmojiHappyIcon className='h-7' />
-                    <input type="text" placeholder='Add a comment...' className='border-none flex-1 focus:ring-0 outline-none' />
-                    <button className='font-semibold text-blue-400'>Post</button>
+                    <input type="text" placeholder='Add a comment...' value={comment} onChange={(e) => setComment(e.target.value)} className='border-none flex-1 focus:ring-0 outline-none' />
+                    <button type='submit' disabled={!comment.trim()} className='font-semibold text-blue-400'>Post</button>
                 </form>
             )}
         </div>
