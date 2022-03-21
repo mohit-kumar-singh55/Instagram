@@ -4,6 +4,7 @@ import { HeartIconFilled } from "@heroicons/react/solid";
 import { useSession } from 'next-auth/react';
 import { addDoc, collection, onSnapshot, serverTimestamp, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
+import Moment from "react-moment";
 
 const Post = ({ post }) => {
     const { data: session } = useSession();
@@ -62,6 +63,24 @@ const Post = ({ post }) => {
             </p>
 
             {/* Comments */}
+            {comments.length > 0 && (
+                <div className='ml-10 h-20 overflow-y-scroll'>
+                    {comments.map((comment) => (
+                        <div key={comment.id} className='flex items-center space-x-2 mb-3'>
+                            <img className='h-7 rounded-full' src={comment.data().userImage} alt="user" />
+                            <p className='text-sm flex-1'>
+                                <span className='font-bold'>{comment.data().username}</span>
+                                <span>{" "}</span>
+                                {comment.data().comment}
+                            </p>
+
+                            <Moment fromNow className='pr-5 text-xs'>
+                                {comment.data().timestamp?.toDate()}
+                            </Moment>
+                        </div>
+                    ))}
+                </div>
+            )}
 
             {/* Input */}
             {session && (
