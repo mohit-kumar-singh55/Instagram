@@ -86,6 +86,9 @@ const Post = ({ post }) => {
 
             {/* Caption */}
             <p className='p-5'>
+                {likes.length > 0 && (
+                    <p className='font-bold mb-1'>{likes.length}</p>
+                )}
                 <span className='font-bold mr-1'>{post.data().username}</span>
                 {post.data().caption}
             </p>
