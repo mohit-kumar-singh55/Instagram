@@ -10,12 +10,21 @@ const Post = ({ post }) => {
     const { data: session } = useSession();
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
+    const [likes, setLikes] = useState([]);
 
     useEffect(() => (
         onSnapshot(
             query(collection(db, 'posts', post.id, 'comments'), orderBy('timestamp', 'desc')),
             (snapshot) => setComments(snapshot.docs)
-        )), [db])
+        )
+    ), [db])
+
+    useEffect(() => (
+        onSnapshot(
+            collection(db, 'posts', post.id, 'comments'),
+            (snapshot) => setComments(snapshot.docs)
+        )
+    ), [db])
 
 
     const sendComment = async (e) => {
@@ -31,7 +40,6 @@ const Post = ({ post }) => {
             timestamp: serverTimestamp()
         })
     }
-
     return (
         <div className='bg-white my-7 rounded-sm border'>
             {/* Header */}
