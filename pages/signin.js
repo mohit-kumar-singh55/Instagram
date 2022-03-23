@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { getProviders, signIn } from "next-auth/react";
-import Header from "../../components/Header";
+import Header from "../components/Header";
 
 const SignIn = ({ providers }) => {
     useEffect(() => {
